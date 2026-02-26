@@ -335,6 +335,28 @@ def init_symlink(cfg: dict, repo_root: Path):
     subprocess.run(["git", "add", ".gitignore"], check=False, cwd=repo_root)
 
 
+def pull_main_repo(repo_root: Path, init_cfg: dict):
+    """主库已有提交且配置了 remote 时执行 pull，支持重复执行时先拉再合并。"""
+    r = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=repo_root,
+        capture_output=True,
+    )
+    if r.returncode != 0:
+        return
+    remote = (init_cfg.get("git-remote") or "origin").strip()
+    url_r = subprocess.run(
+        ["git", "remote", "get-url", remote],
+        cwd=repo_root,
+        capture_output=True,
+        text=True,
+    )
+    if url_r.returncode != 0:
+        return
+    log.info("主库拉取更新: git pull")
+    subprocess.run(["git", "pull"], check=False, cwd=repo_root)
+
+
 def main():
     repo_root = find_repo_root()
     os.chdir(repo_root)
