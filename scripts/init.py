@@ -358,6 +358,8 @@ def main():
     subprocess.run(["git", "add", "-A"], check=False, cwd=repo_root)
     git_commit_if_changed(repo_root, "chore: init submodules and gitignore")
     # 主库 push（若有 remote）
+    # 先 pull 再合并
+    pull_main_repo(repo_root, init_cfg)
     remote = (init_cfg.get("git-remote") or "origin").strip()
     branch = (init_cfg.get("git-branch") or "main").strip() or "main"
     r = subprocess.run(
