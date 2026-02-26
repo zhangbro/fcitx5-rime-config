@@ -1,0 +1,11 @@
+# 一些无关的配置文件
+.history/
+.vscode/
+.cursor/
+.qspacesettings/
+.idea/
+
+# 官方的release
+sbsrf.zip
+
+99_install_sync
