@@ -1,0 +1,15 @@
+# 一些无关的配置文件
+.history/
+.vscode/
+.cursor/
+.qspacesettings/
+.idea/
+
+# 官方的release
+sbsrf.zip
+
+99_install_sync
+
+00_sbxlm/*.dict
+
+98_rime_实际使用的配置
