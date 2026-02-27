@@ -1,0 +1,4 @@
+patch:
+  translator/filter_strength: 4    #可以为3,4,5,6
+  translator/forced_selection: true
+  translator/single_selection: true
